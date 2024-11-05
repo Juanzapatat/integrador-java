@@ -10,6 +10,7 @@ public class Main {
         // Llamada al método de control de gastos
         controlDeGastos();
         registroDeFactura();
+        reporteDeFinanzas();
     }
 
     // Método para controlar gastos
@@ -145,4 +146,65 @@ public class Main {
             }
         }
     }
-}
+    static void reporteDeFinanzas() {
+        ArrayList<String> factura = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+        
+        while (true) {
+            System.out.println(
+            "Bienvenido al sistema de reporte de finanzas. Complete el formulario para generar su reporte.");
+            System.out.println("--------------------------------------------------");
+            System.out.println("Opciones:");
+            System.out.println("1. Nombre del reporte");
+            System.out.println("2. fecha de expedicion");
+            System.out.println("3. fecha de vencimiento");
+            System.out.println("4. monto del reporte");
+            System.out.println("5. categoria");
+            System.out.println("6. Generar reporte");
+            System.out.print("Seleccione una opción: ");
+            
+            int opciones = scanner.nextInt();
+            scanner.nextLine();
+            
+            switch (opciones) {
+                case 1:
+                    System.out.print("Ingrese el nombre del reporte: ");
+                    String nombreReporte = scanner.nextLine();
+                    factura.add("Nombre del reporte: " + nombreReporte);
+                    break;
+                case 2:
+                    System.out.print("Ingrese la fecha de expedición: ");
+                    String fechaExpedicion = scanner.nextLine();
+                    factura.add("Fecha de expedición: " + fechaExpedicion);
+                    break;
+                case 3:
+                    System.out.print("Ingrese la fecha de vencimiento: ");
+                    String fechaVencimiento = scanner.nextLine();
+                    factura.add("Fecha de vencimiento: " + fechaVencimiento);
+                    break;
+                case 4:
+                    System.out.print("Ingrese el monto del reporte: ");
+                    String montoReporte = scanner.nextLine();
+                    factura.add("Monto del reporte: " + montoReporte);
+                    break;
+                    
+                case 5:
+                System.out.print("Ingrese la categoría: ");
+                String categoria = scanner.nextLine();
+                factura.add("Categoría: " + categoria);
+                break;
+                case 6:
+                System.out.println("Reporte generado exitosamente.");
+                for (String revision : factura) {
+                    System.out.println(revision);
+                }
+                return; // Finalizar el método reporteDeFinanzas
+                default:
+                System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
+                break;
+                }
+            }
+        }
+    }
+    
+    
