@@ -8,9 +8,31 @@ public class Main {
 
     public static void main(String[] args) {
         // Llamada al método de control de gastos
+       login();
         controlDeGastos();
         registroDeFactura();
         reporteDeFinanzas();
+    }
+
+// Metodo de login
+    static void login() {
+        Scanner sc = new Scanner(System.in); // Creo un scanner para capturar datos
+
+        while (true) {
+            System.out.print("Ingrese su nombre de Usuario: ");
+            String nombreUsuario = sc.next();
+
+            System.out.print("Ingrese su contraseña: ");
+            String contrasena = sc.next();
+
+            if (nombreUsuario.equals("ADMIN") && contrasena.equals("CESDE")) {
+                // Inicio de sesión correcto
+                System.out.println("Bienvenido, administrador!");
+                break;
+            } else {
+                System.out.println("Nombre de Usuario o Contraseña incorrectos.");
+            }
+        }
     }
 
     // Método para controlar gastos
