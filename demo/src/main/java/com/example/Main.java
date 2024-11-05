@@ -169,64 +169,90 @@ public class Main {
         }
     }
     static void reporteDeFinanzas() {
-        ArrayList<String> factura = new ArrayList<>();
+        ArrayList<String> reporte = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
-        
+
         while (true) {
-            System.out.println(
-            "Bienvenido al sistema de reporte de finanzas. Complete el formulario para generar su reporte.");
+            System.out.println("Bienvenido al sistema de reporte de finanzas. Complete el formulario para generar su reporte.");
             System.out.println("--------------------------------------------------");
             System.out.println("Opciones:");
-            System.out.println("1. Nombre del reporte");
-            System.out.println("2. fecha de expedicion");
-            System.out.println("3. fecha de vencimiento");
-            System.out.println("4. monto del reporte");
-            System.out.println("5. categoria");
-            System.out.println("6. Generar reporte");
+            System.out.println("1. Registrar reporte");
+            System.out.println("2. Eliminar reporte");
+            System.out.println("3. Consultar reportes");
+            System.out.println("4. Cerrar sesión");
             System.out.print("Seleccione una opción: ");
-            
-            int opciones = scanner.nextInt();
-            scanner.nextLine();
-            
-            switch (opciones) {
-                case 1:
-                    System.out.print("Ingrese el nombre del reporte: ");
-                    String nombreReporte = scanner.nextLine();
-                    factura.add("Nombre del reporte: " + nombreReporte);
-                    break;
-                case 2:
-                    System.out.print("Ingrese la fecha de expedición: ");
-                    String fechaExpedicion = scanner.nextLine();
-                    factura.add("Fecha de expedición: " + fechaExpedicion);
-                    break;
-                case 3:
-                    System.out.print("Ingrese la fecha de vencimiento: ");
-                    String fechaVencimiento = scanner.nextLine();
-                    factura.add("Fecha de vencimiento: " + fechaVencimiento);
-                    break;
-                case 4:
-                    System.out.print("Ingrese el monto del reporte: ");
-                    String montoReporte = scanner.nextLine();
-                    factura.add("Monto del reporte: " + montoReporte);
-                    break;
-                    
-                case 5:
-                System.out.print("Ingrese la categoría: ");
-                String categoria = scanner.nextLine();
-                factura.add("Categoría: " + categoria);
-                break;
-                case 6:
-                System.out.println("Reporte generado exitosamente.");
-                for (String revision : factura) {
-                    System.out.println(revision);
+
+            int opcion = scanner.nextInt();
+            scanner.nextLine();  // Limpiar el buffer de la entrada
+
+            if (opcion == 1) {
+                // Registrar un nuevo reporte
+                System.out.print("Nombre del reporte: ");
+                String nombreReporte = scanner.nextLine();
+                reporte.add("Nombre de reporte: " + nombreReporte);
+
+                System.out.print("Fecha de expedición: ");
+                String fechaExpidicion = scanner.nextLine();
+                reporte.add("Fecha de expedición: " + fechaExpidicion);
+
+                System.out.print("Fecha de vencimiento: ");
+                String fechaVencimiento = scanner.nextLine();
+                reporte.add("Fecha de vencimiento: " + fechaVencimiento);
+
+                System.out.print("Monto del reporte: ");
+                String montoReporte = scanner.nextLine();
+                reporte.add("Monto de reporte: " + montoReporte);
+
+                System.out.print("Categoría del reporte: ");
+                String categoriaReporte = scanner.nextLine();
+                reporte.add("Categoría de reporte: " + categoriaReporte);
+
+                System.out.println("Reporte registrado exitosamente.");
+
+            } else if (opcion == 2) {
+                // Eliminar un reporte
+                System.out.print("Ingrese el nombre del reporte que desea eliminar: ");
+                String eliminar = scanner.nextLine();
+
+                boolean encontrado = false;
+                for (int i = 0; i < reporte.size(); i++) {
+                    if (reporte.get(i).contains(eliminar)) {
+                        reporte.remove(i);
+                        System.out.println("Reporte eliminado exitosamente.");
+                        encontrado = true;
+                        break;
+                    }
                 }
-                return; // Finalizar el método reporteDeFinanzas
-                default:
-                System.out.println("Opción inválida. Por favor, seleccione una opción válida.");
-                break;
+
+                if (!encontrado) {
+                    System.out.println("Reporte no encontrado.");
                 }
+
+            } else if (opcion == 3) {
+                // Consultar los reportes registrados
+                System.out.println("Tus reportes son:");
+                if (reporte.isEmpty()) {
+                    System.out.println("No hay reportes registrados.");
+                } else {
+                    for (String finanza : reporte) {
+                        System.out.println(finanza);
+                    }
+                }
+
+            } else if (opcion == 4) {
+                // Cerrar sesión
+                System.out.println("Su sesión se ha cerrado correctamente.");
+                break; // Salir del bucle
+
+            } else {
+                System.out.println("Opción no válida. Por favor, seleccione una opción correcta.");
             }
         }
+
+        scanner.close();  // Cerrar el scanner
     }
-    
-    
+}
+
+
+
+
